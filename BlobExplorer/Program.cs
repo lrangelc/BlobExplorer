@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
+using System.Threading.Tasks;
 
 namespace BlobExplorer
 {
@@ -10,10 +11,10 @@ namespace BlobExplorer
     {
         static void Main(string[] args)
         {
-            Upload_File();
+            Upload_FileAsync();
         }
 
-        static void Upload_File()
+        static async System.Threading.Tasks.Task Upload_FileAsync()
         {
             string origin_file = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "files"), "eiab.jpg");
             Console.WriteLine(File.Exists(origin_file) ? "File exists." : "File does not exist.");
@@ -36,7 +37,7 @@ namespace BlobExplorer
                 contenedor.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
                 CloudBlockBlob miBlob = contenedor.GetBlockBlobReference(file_name);
-                var y = miBlob.UploadFromFileAsync(origin_file);
+                miBlob.UploadFromFileAsync(origin_file);
 
                 Console.WriteLine("Tu contenedor esta listo y creado");
                 Console.ReadLine();

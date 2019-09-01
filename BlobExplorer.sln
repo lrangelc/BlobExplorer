@@ -6,6 +6,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlobExplorer", "BlobExplore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlobStorageNF", "BlobStorageNF\BlobStorageNF.csproj", "{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorer", "FileExplorer\FileExplorer.csproj", "{D577C889-302E-48FA-8F90-35D460F1D09F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorerNF", "FileExplorerNF\FileExplorerNF.csproj", "{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
 		{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D577C889-302E-48FA-8F90-35D460F1D09F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D577C889-302E-48FA-8F90-35D460F1D09F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D577C889-302E-48FA-8F90-35D460F1D09F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D577C889-302E-48FA-8F90-35D460F1D09F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
