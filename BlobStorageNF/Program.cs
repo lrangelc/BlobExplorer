@@ -7,6 +7,7 @@ using Microsoft.WindowsAzure;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
 using Microsoft.Azure;
+using System.IO;
 
 namespace BlobStorageNF
 {
@@ -14,21 +15,29 @@ namespace BlobStorageNF
     {
         static void Main(string[] args)
         {
-            CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
-            CloudBlobClient clienteBlob = cuentaAlmacenamiento.CreateCloudBlobClient();
-            CloudBlobContainer contenedor = clienteBlob.GetContainerReference("contenedorcodigo");
-            contenedor.CreateIfNotExists();
-            contenedor.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+            string origin_file = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "files"), "eiab.jpg");
+            Console.WriteLine(File.Exists(origin_file) ? "File exists." : "File does not exist.");
 
-            CloudBlockBlob miBlob = contenedor.GetBlockBlobReference("foto3.jpg");
-
-            using (var fileStream = System.IO.File.OpenRead(@"C:\\RPADev\\cursos\\paas\\eiab.jpg"))
+            if (File.Exists(origin_file))
             {
-                miBlob.UploadFromStream(fileStream);
-            }
+                CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
+                CloudBlobClient clienteBlob = cuentaAlmacenamiento.CreateCloudBlobClient();
+                CloudBlobContainer contenedor = clienteBlob.GetContainerReference("contenedorcodigo");
+                contenedor.CreateIfNotExists();
+                contenedor.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
-            Console.WriteLine("Tu contenedor esta listo y creado");
-            Console.ReadLine();
+                string file_name = "foto" + Guid.NewGuid().ToString() + ".jpg";
+
+                CloudBlockBlob miBlob = contenedor.GetBlockBlobReference(file_name);
+
+                using (var fileStream = System.IO.File.OpenRead(origin_file))
+                {
+                    miBlob.UploadFromStream(fileStream);
+                }
+
+                Console.WriteLine("Tu contenedor esta listo y creado");
+                Console.ReadLine();
+            }
         }
     }
 }
