@@ -1,7 +1,10 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlobExplorer", "BlobExplorer\BlobExplorer.csproj", "{03644D37-77B2-4D00-92DB-9B4BCC1521EC}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlobExplorer", "BlobExplorer\BlobExplorer.csproj", "{03644D37-77B2-4D00-92DB-9B4BCC1521EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlobStorageNF", "BlobStorageNF\BlobStorageNF.csproj", "{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +16,15 @@ Global
 		{03644D37-77B2-4D00-92DB-9B4BCC1521EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{03644D37-77B2-4D00-92DB-9B4BCC1521EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{03644D37-77B2-4D00-92DB-9B4BCC1521EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {674DF15C-C4DB-4378-A15A-3DBC34AB0DB0}
 	EndGlobalSection
 EndGlobal
