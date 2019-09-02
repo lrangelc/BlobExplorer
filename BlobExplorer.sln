@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorer", "FileExplore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorerNF", "FileExplorerNF\FileExplorerNF.csproj", "{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableExplorerNF", "TableExplorerNF\TableExplorerNF.csproj", "{B7BDD678-197C-4EBC-8711-CCA257E6AD02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7BDD678-197C-4EBC-8711-CCA257E6AD02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7BDD678-197C-4EBC-8711-CCA257E6AD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7BDD678-197C-4EBC-8711-CCA257E6AD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7BDD678-197C-4EBC-8711-CCA257E6AD02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

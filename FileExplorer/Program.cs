@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Microsoft.Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Blob;
@@ -10,55 +11,45 @@ namespace FileExplorer
     class Program
     {
         static void Main(string[] args)
-        //static async System.Threading.Tasks.Task Main(string[] args)
         {
-            Upload_File();
+            Read_FileAsync();
         }
 
-        static async System.Threading.Tasks.Task Upload_File()
+        static async System.Threading.Tasks.Task Read_FileAsync()
         {
-            try
+            var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+            IConfigurationRoot configuration = builder.Build();
+
+            CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(configuration.GetConnectionString("FileConnectionString"));
+            CloudFileClient clienteArchivos = cuentaAlmacenamiento.CreateCloudFileClient();
+            CloudFileShare archivoCompartido = clienteArchivos.GetShareReference("platzifile");
+
+            if (await archivoCompartido.ExistsAsync())
             {
-                var builder = new ConfigurationBuilder()
-                                    .SetBasePath(Directory.GetCurrentDirectory())
-                                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                CloudFileDirectory carpetaRaiz = archivoCompartido.GetRootDirectoryReference();
+                CloudFileDirectory directorio = carpetaRaiz.GetDirectoryReference("registros");
 
-                IConfigurationRoot configuration = builder.Build();
-
-                Console.WriteLine("Hello World!");
-
-                CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(configuration.GetConnectionString("FileConnectionString"));
-                CloudFileClient clienteArchivos = cuentaAlmacenamiento.CreateCloudFileClient();
-
-                CloudFileShare archivoCompartido = clienteArchivos.GetShareReference("platzifile3");
-                bool x = await archivoCompartido.CreateIfNotExistsAsync();
-                //Console.ReadLine();
-                //bool x = await archivoCompartido.ExistsAsync();
-                if (await archivoCompartido.ExistsAsync())
+                if (await directorio.ExistsAsync())
                 {
-                    Console.WriteLine("hi");
+                    CloudFile archivo = directorio.GetFileReference("logActividades.txt");
+                    if (await archivo.ExistsAsync())
+                    {
+                        Console.WriteLine(archivo.DownloadTextAsync().Result);
+                    }
+                    else
+                    {
+                        Console.WriteLine("no se encontro el archivo: logActividades.txt");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("bye");
+                    Console.WriteLine("no se encontro la carpeta: registros");
                 }
             }
-            catch (StorageException exStorage)
-            {
-                //Common.WriteException(exStorage);
-                Console.WriteLine(
-                    "Please make sure your storage account has storage file endpoint enabled and specified correctly in the app.config - then restart the sample.");
-                Console.WriteLine("Press any key to exit");
-                Console.ReadLine();
-                throw;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("    Exception thrown creating share.");
-                //Common.WriteException(ex);
-                throw;
-            }
-
+            Console.ReadLine();
         }
     }
 }

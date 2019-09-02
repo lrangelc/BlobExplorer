@@ -13,7 +13,6 @@ namespace FileExplorerNF
     {
         static void Main(string[] args)
         {
-
             CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("FileConnectionString"));
             CloudFileClient clienteArchivos = cuentaAlmacenamiento.CreateCloudFileClient();
             CloudFileShare archivoCompartido = clienteArchivos.GetShareReference("platzifile");
