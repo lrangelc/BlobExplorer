@@ -19,7 +19,11 @@ namespace TableExplorerNF
             CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("TableConnectionString"));
             CloudTableClient clienteTablas = cuentaAlmacenamiento.CreateCloudTableClient();
 
-            CloudTable tabla = clienteTablas.GetTableReference("documento");
+            CloudTable tabla = clienteTablas.GetTableReference("documentos");
+            //tabla.DeleteIfExists();
+            //Console.WriteLine("Tabla eliminada");
+
+
             tabla.CreateIfNotExists();
 
             var tablas = clienteTablas.ListTables();
@@ -29,7 +33,7 @@ namespace TableExplorerNF
                 Console.WriteLine(item.Name);
             }
 
-            
+
             Profesor profeUno = new Profesor(Guid.NewGuid().ToString(), "Profesores");
             profeUno.NombreProfesor = "Ricardo Selis";
             profeUno.NombreAsignatura = "Microcontroladores";
@@ -38,16 +42,22 @@ namespace TableExplorerNF
             profeDos.NombreProfesor = "Carlos Paredes";
             profeDos.NombreAsignatura = "Diseno Audiovisual";
 
+            Profesor profeTres = new Profesor("007", "Profesores");
+            profeTres.NombreProfesor = "Victoria Moreira";
+            profeTres.NombreAsignatura = "Arquitectura";
+
             TableOperation insertarProfeUno = TableOperation.Insert(profeUno);
             TableOperation insertarProfeDos = TableOperation.Insert(profeDos);
+            TableOperation insertarProfeTres = TableOperation.Insert(profeTres);
 
             tabla.Execute(insertarProfeUno);
             tabla.Execute(insertarProfeDos);
+            tabla.Execute(insertarProfeTres);
 
             Console.WriteLine("Se han insertado todos los profesores creados");
 
 
-            
+
 
 
             TableOperation operacionModificar = TableOperation.Retrieve<Profesor>("Profesores", "002");
@@ -76,6 +86,21 @@ namespace TableExplorerNF
                 Console.WriteLine("{0}, {1}\t{2}\t{3}", profe.PartitionKey, profe.RowKey, profe.NombreProfesor, profe.NombreAsignatura);
             }
 
+
+
+            TableOperation operacionEliminar = TableOperation.Retrieve<Profesor>("Profesores", "007");
+            TableResult resultadoObtenidoEliminar = tabla.Execute(operacionEliminar);
+            Profesor entidadEliminar = (Profesor)resultadoObtenidoEliminar.Result;
+            if (entidadEliminar != null)
+            {
+                TableOperation operacionDelete = TableOperation.Delete(entidadEliminar);
+                tabla.Execute(operacionDelete);
+                Console.WriteLine("Entidad Actualizada");
+            }
+            else
+            {
+                Console.WriteLine("No se encontro la entidad");
+            }
 
 
             Console.ReadLine();
