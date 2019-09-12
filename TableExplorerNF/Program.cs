@@ -19,7 +19,7 @@ namespace TableExplorerNF
             CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("TableConnectionString"));
             CloudTableClient clienteTablas = cuentaAlmacenamiento.CreateCloudTableClient();
 
-            CloudTable tabla = clienteTablas.GetTableReference("documentos");
+            CloudTable tabla = clienteTablas.GetTableReference("documento");
             tabla.CreateIfNotExists();
 
             var tablas = clienteTablas.ListTables();
@@ -45,6 +45,15 @@ namespace TableExplorerNF
             tabla.Execute(insertarProfeDos);
 
             Console.WriteLine("Se han insertado todos los profesores creados");
+
+
+            TableQuery<Profesor> consulta = new TableQuery<Profesor>().Where(TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.GreaterThan,"000"));
+
+            foreach (Profesor profe in tabla.ExecuteQuery(consulta))
+            {
+                Console.WriteLine("{0}, {1}\t{2}\t{3}",profe.PartitionKey,profe.RowKey,profe.NombreProfesor,profe.NombreAsignatura);
+            }
+
             Console.ReadLine();
 
         }
