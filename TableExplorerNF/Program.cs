@@ -14,7 +14,7 @@ namespace TableExplorerNF
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("inicia proceso");
+            Console.WriteLine("inicia proceso. Presione cualquier tecla.");
             Console.ReadLine();
             CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("TableConnectionString"));
             CloudTableClient clienteTablas = cuentaAlmacenamiento.CreateCloudTableClient();
@@ -47,12 +47,36 @@ namespace TableExplorerNF
             Console.WriteLine("Se han insertado todos los profesores creados");
 
 
-            TableQuery<Profesor> consulta = new TableQuery<Profesor>().Where(TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.GreaterThan,"000"));
+            
+
+
+            TableOperation operacionModificar = TableOperation.Retrieve<Profesor>("Profesores", "002");
+            TableResult resultadoObtenido = tabla.Execute(operacionModificar);
+            Profesor entidadModificada = (Profesor)resultadoObtenido.Result;
+            if (entidadModificada != null)
+            {
+                entidadModificada.NombreProfesor = "Rocio Pinzon";
+                entidadModificada.NombreAsignatura = "Baile";
+                TableOperation operacionActualizar = TableOperation.Replace(entidadModificada);
+                tabla.Execute(operacionActualizar);
+                Console.WriteLine("Entidad Actualizada");
+            }
+            else
+            {
+                Console.WriteLine("No se encontro la entidad");
+            }
+
+
+
+
+            TableQuery<Profesor> consulta = new TableQuery<Profesor>().Where(TableQuery.GenerateFilterCondition("RowKey", QueryComparisons.GreaterThan, "000"));
 
             foreach (Profesor profe in tabla.ExecuteQuery(consulta))
             {
-                Console.WriteLine("{0}, {1}\t{2}\t{3}",profe.PartitionKey,profe.RowKey,profe.NombreProfesor,profe.NombreAsignatura);
+                Console.WriteLine("{0}, {1}\t{2}\t{3}", profe.PartitionKey, profe.RowKey, profe.NombreProfesor, profe.NombreAsignatura);
             }
+
+
 
             Console.ReadLine();
 
