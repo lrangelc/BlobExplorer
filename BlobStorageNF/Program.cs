@@ -21,8 +21,8 @@ namespace BlobStorageNF
     {
         static void Main(string[] args)
         {
-            string file = BackUp_DataBase_1();
-            //string file = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "files"), "eiab.jpg");
+            //string file = BackUp_DataBase_1();
+            string file = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "files"), "eiab.jpg");
 
             Upload_File(file);
             Console.ReadLine();
@@ -159,7 +159,7 @@ namespace BlobStorageNF
             }
         }
 
-        private static void Upload_File_Stream(string origin_file)
+        private static void Upload_File_Stream(string origin_file, string folder = "")
         {
             try
             {
@@ -175,7 +175,7 @@ namespace BlobStorageNF
                     contenedor.CreateIfNotExists();
                     contenedor.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
-                    CloudBlockBlob miBlob = contenedor.GetBlockBlobReference(Path.GetFileName(origin_file));
+                    CloudBlockBlob miBlob = contenedor.GetBlockBlobReference((folder.Length == 0 ? "" : folder + "/") + Path.GetFileName(origin_file));
                     Console.WriteLine("Uploading file...");
 
                     using (var fileStream = System.IO.File.OpenRead(origin_file))
@@ -204,17 +204,15 @@ namespace BlobStorageNF
             }
         }
 
-        private static void Upload_File_Block(string origin_file)
+        private static void Upload_File_Block(string origin_file, string folder = "")
         {
-            
-
             CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("StorageConnectionString"));
             CloudBlobClient clienteBlob = cuentaAlmacenamiento.CreateCloudBlobClient();
             CloudBlobContainer contenedor = clienteBlob.GetContainerReference("rpaposlan");
             contenedor.CreateIfNotExists();
             contenedor.SetPermissions(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
-            CloudBlockBlob blob = contenedor.GetBlockBlobReference(Path.GetFileName(origin_file));
+            CloudBlockBlob blob = contenedor.GetBlockBlobReference((folder.Length == 0 ? "" : folder + "/") + Path.GetFileName(origin_file));
             Console.WriteLine("Uploading file...");
 
             int blockSize = 256 * 1024; //256 kb
