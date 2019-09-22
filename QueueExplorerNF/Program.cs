@@ -14,7 +14,7 @@ namespace QueueExplorerNF
             CloudQueue queue = clienteColas.GetQueueReference("mifiladeprocesos");
             bool x = await queue.CreateIfNotExistsAsync();
 
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 100; i++)
             {
                 CloudQueueMessage mensaje = new CloudQueueMessage($"Operacion:{i}");
                 //queue.AddMessage(mensaje);

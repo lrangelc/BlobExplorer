@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableExplorerNF", "TableExp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueExplorerNF", "QueueExplorerNF\QueueExplorerNF.csproj", "{DCA4B065-B097-4369-B059-F3B50A20808A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueHandlerNF", "QueueHandlerNF\QueueHandlerNF.csproj", "{CE8EF411-20D0-4590-ADC0-C5CDC175A530}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{DCA4B065-B097-4369-B059-F3B50A20808A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA4B065-B097-4369-B059-F3B50A20808A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCA4B065-B097-4369-B059-F3B50A20808A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE8EF411-20D0-4590-ADC0-C5CDC175A530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE8EF411-20D0-4590-ADC0-C5CDC175A530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE8EF411-20D0-4590-ADC0-C5CDC175A530}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE8EF411-20D0-4590-ADC0-C5CDC175A530}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
