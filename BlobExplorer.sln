@@ -6,11 +6,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlobExplorer", "BlobExplore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlobStorageNF", "BlobStorageNF\BlobStorageNF.csproj", "{63A348E2-3BB1-42A9-8E4B-E0321D1F6415}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorer", "FileExplorer\FileExplorer.csproj", "{D577C889-302E-48FA-8F90-35D460F1D09F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileExplorer", "FileExplorer\FileExplorer.csproj", "{D577C889-302E-48FA-8F90-35D460F1D09F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorerNF", "FileExplorerNF\FileExplorerNF.csproj", "{C5C060FA-CEB1-43C8-8ADE-92DE1C7C80F2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TableExplorerNF", "TableExplorerNF\TableExplorerNF.csproj", "{B7BDD678-197C-4EBC-8711-CCA257E6AD02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueExplorerNF", "QueueExplorerNF\QueueExplorerNF.csproj", "{DCA4B065-B097-4369-B059-F3B50A20808A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{B7BDD678-197C-4EBC-8711-CCA257E6AD02}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7BDD678-197C-4EBC-8711-CCA257E6AD02}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7BDD678-197C-4EBC-8711-CCA257E6AD02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCA4B065-B097-4369-B059-F3B50A20808A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCA4B065-B097-4369-B059-F3B50A20808A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCA4B065-B097-4369-B059-F3B50A20808A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCA4B065-B097-4369-B059-F3B50A20808A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
