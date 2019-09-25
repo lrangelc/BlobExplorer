@@ -21,8 +21,8 @@ namespace BlobStorageNF
     {
         static void Main(string[] args)
         {
-            //string file = BackUp_DataBase_1();
-            string file = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "files"), "eiab.jpg");
+            string file = BackUp_DataBase_1();
+            //string file = Path.Combine(Path.Combine(Directory.GetCurrentDirectory(), "files"), "eiab.jpg");
 
             Upload_File(file);
             Console.ReadLine();
