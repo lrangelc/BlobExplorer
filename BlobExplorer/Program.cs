@@ -21,9 +21,18 @@ namespace BlobExplorer
 
             if (File.Exists(origin_file))
             {
+#if DEBUG || DEV 
                 var builder = new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
-                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+                    .AddJsonFile($"appsettings.Development.json", true, true);
+#else
+                var builder = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile($"appsettings.json", true, true);
+#endif
+                //var builder = new ConfigurationBuilder()
+                //    .SetBasePath(Directory.GetCurrentDirectory())
+                //    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
                 IConfigurationRoot configuration = builder.Build();
 
