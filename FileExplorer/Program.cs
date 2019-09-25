@@ -30,7 +30,7 @@ namespace FileExplorer
                 CloudFileClient clienteArchivos = cuentaAlmacenamiento.CreateCloudFileClient();
                 CloudFileShare archivoCompartido = clienteArchivos.GetShareReference("platzifile");
 
-                bool existeFileShare =  archivoCompartido.ExistsAsync().GetAwaiter().GetResult();
+                bool existeFileShare = archivoCompartido.ExistsAsync().GetAwaiter().GetResult();
                 //bool existeFileShare = await archivoCompartido.ExistsAsync();
                 //.Net Framework no funciona el await con el .ExistsAsync()
                 //agregar .GetAwaiter().GetResult()

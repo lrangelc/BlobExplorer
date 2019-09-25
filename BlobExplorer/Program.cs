@@ -9,9 +9,9 @@ namespace BlobExplorer
 {
     class Program
     {
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
-            Upload_FileAsync();
+            await Upload_FileAsync();
         }
 
         static async System.Threading.Tasks.Task Upload_FileAsync()
@@ -33,11 +33,11 @@ namespace BlobExplorer
                 CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(configuration.GetConnectionString("StorageConnectionString"));
                 CloudBlobClient clienteBlob = cuentaAlmacenamiento.CreateCloudBlobClient();
                 CloudBlobContainer contenedor = clienteBlob.GetContainerReference("yeap2");
-                contenedor.CreateIfNotExistsAsync();
-                contenedor.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
+                bool existeContenedor = contenedor.CreateIfNotExistsAsync().GetAwaiter().GetResult();
+                _ = contenedor.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Blob });
 
                 CloudBlockBlob miBlob = contenedor.GetBlockBlobReference(file_name);
-                miBlob.UploadFromFileAsync(origin_file);
+                _ = miBlob.UploadFromFileAsync(origin_file);
 
                 Console.WriteLine("Tu contenedor esta listo y creado");
                 Console.ReadLine();
