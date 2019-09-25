@@ -11,6 +11,9 @@ namespace FileExplorerNF
 {
     class Program
     {
+        const string ARCHIVO_NOMBRE = "logActividades.txt";
+        const string DIRECTORIO_NOMBRE = "registros";
+
         static void Main(string[] args)
         {
             CloudStorageAccount cuentaAlmacenamiento = CloudStorageAccount.Parse(CloudConfigurationManager.GetSetting("FileConnectionString"));
@@ -20,23 +23,24 @@ namespace FileExplorerNF
             if (archivoCompartido.Exists())
             {
                 CloudFileDirectory carpetaRaiz = archivoCompartido.GetRootDirectoryReference();
-                CloudFileDirectory directorio = carpetaRaiz.GetDirectoryReference("registros");
+                CloudFileDirectory directorio = carpetaRaiz.GetDirectoryReference(DIRECTORIO_NOMBRE);
 
                 if (directorio.Exists())
                 {
-                    CloudFile archivo = directorio.GetFileReference("logActividades.txt");
+                    Console.WriteLine($"Archivo a leer: {ARCHIVO_NOMBRE}");
+                    CloudFile archivo = directorio.GetFileReference(ARCHIVO_NOMBRE);
                     if (archivo.Exists())
                     {
                         Console.WriteLine(archivo.DownloadTextAsync().Result);
                     }
                     else
                     {
-                        Console.WriteLine("no se encontro el archivo: logActividades.txt");
+                        Console.WriteLine($"no se encontro el archivo: {ARCHIVO_NOMBRE}");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("no se encontro la carpeta: registros");
+                    Console.WriteLine($"no se encontro la carpeta: {DIRECTORIO_NOMBRE}");
                 }
             }
             Console.ReadLine();
