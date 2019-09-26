@@ -11,6 +11,7 @@ autom4te.cache/
 tarballs/
 test-results/
 App.Dev.config
+App.Dev1.config
 appsettings.Development.json
 
 

@@ -10,6 +10,9 @@ namespace FileExplorer
 {
     class Program
     {
+        const string ARCHIVO_NOMBRE = "logActividades.txt";
+        const string DIRECTORIO_NOMBRE = "registros";
+
         static async System.Threading.Tasks.Task Main(string[] args)
         //static void Main(string[] args)
         {
@@ -53,13 +56,13 @@ namespace FileExplorer
 
                     if (existeDirectorio)
                     {
-                        CloudFile archivo = directorio.GetFileReference("logActividades.txt");
+                        CloudFile archivo = directorio.GetFileReference(ARCHIVO_NOMBRE);
 
                         bool existeArchivo = archivo.ExistsAsync().GetAwaiter().GetResult();
 
                         if (existeArchivo)
                         {
-                            Console.WriteLine("Escribiendo archivo: logActividades.txt");
+                            Console.WriteLine($"Escribiendo archivo: {ARCHIVO_NOMBRE}");
                             string x = archivo.DownloadTextAsync().GetAwaiter().GetResult();
                             //string x = await archivo.DownloadTextAsync();
                             Console.WriteLine(x);
