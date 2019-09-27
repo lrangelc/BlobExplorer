@@ -30,16 +30,16 @@ namespace ClienteDocumentDBNF
             command.ExecuteNonQuery();
             Console.Out.WriteLine("Tabla eliminada (si existia)");
 
-            command.CommandText = "CREATE TABLE inventario (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);";
+            command.CommandText = "CREATE TABLE inventario (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER,inserted_at Timestamp);";
             command.ExecuteNonQuery();
             Console.Out.WriteLine("Tabla Creada");
 
             command.CommandText =
                 String.Format(
                     @"
-                INSERT INTO inventario (name, quantity) VALUES ({0},{1});
-                INSERT INTO inventario (name, quantity) VALUES ({2},{3});
-                INSERT INTO inventario (name, quantity) VALUES ({4},{5});
+                INSERT INTO inventario (name, quantity,inserted_at) VALUES ({0},{1},now());
+                INSERT INTO inventario (name, quantity,inserted_at) VALUES ({2},{3},now());
+                INSERT INTO inventario (name, quantity,inserted_at) VALUES ({4},{5},now());
             ",
                     "\'banana\'", 150,
                     "\'naranja\'", 154,
