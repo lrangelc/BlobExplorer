@@ -50,6 +50,7 @@ namespace ClienteDocumentDBNF
 
             Console.Out.WriteLine("Cerrando conexion");
             conn.Close();
+            Console.WriteLine("Press any key to continue...");
             Console.ReadLine();
 
         }
